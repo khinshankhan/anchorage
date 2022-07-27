@@ -41,3 +41,16 @@ export const slugify = (
   const p = sindresorhusSlugify(prefix, slugifyOptions);
   return `/${p}/${slug}`.replace(singleSlashRegex, `/`);
 };
+
+// NOTE: This is a temporary solution until we have a better way to handle
+// first attempt at github copilot
+export const removeIndexSuffix = (str: string) => {
+  let newStr = str;
+  while (newStr.endsWith(`index`)) {
+    newStr = newStr.slice(0, -5);
+    if (newStr.endsWith(`/`)) {
+      newStr = newStr.slice(0, -1);
+    }
+  }
+  return newStr;
+};
